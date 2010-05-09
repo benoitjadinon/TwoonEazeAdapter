@@ -53,6 +53,9 @@ package be.dinon.tools.twoon.adapters.eaze
 			
 			// easing
 			if (easing != null) tween.easing(Cubic.easeInOut);//getEasing(easing, movement));
+			
+			// onUpdate
+			if (updateHandler != null) tween.onUpdate(updateHandler, updateParams);
 		}
 		
 		override protected function getVarsObject(direction:TwoonFromToType = null):Object
