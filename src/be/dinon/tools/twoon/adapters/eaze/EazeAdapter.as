@@ -55,7 +55,20 @@ package be.dinon.tools.twoon.adapters.eaze
 			if (easing != null) tween.easing(Cubic.easeInOut);//getEasing(easing, movement));
 			
 			// onUpdate
-			if (updateHandler != null) tween.onUpdate(updateHandler, updateParams);
+			if (updateHandler != null) 
+			{
+				var applyArgs:Array = updateParams ? updateParams : [];
+				applyArgs.unshift(updateHandler);
+				tween.onUpdate.apply(tween, applyArgs);
+			}
+
+			// onComplete
+			if (completeHandler != null) 
+			{
+				var applyCompleteArgs:Array = completeParams ? completeParams : [];
+				applyCompleteArgs.unshift(completeHandler);
+				tween.onComplete.apply(tween, applyCompleteArgs);
+			}
 		}
 		
 		override protected function getVarsObject(direction:TwoonFromToType = null):Object
